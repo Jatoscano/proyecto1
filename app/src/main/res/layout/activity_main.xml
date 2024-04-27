@@ -4,41 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/playa"
     tools:context=".MainActivity">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/ivory">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <TextView
-        android:id="@+id/txt"
+        android:id="@+id/txtLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Hello World!"
-        android:textSize="24dp"
+        android:text="@string/txt_login"
+        android:textSize="@dimen/txt_name_size_title_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtxt"
+    <TextView
+        android:id="@+id/txtUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:text="@string/txt_user"
+        android:textSize="@dimen/txt_name_size_title_2"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/txtLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edtxtUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_name_size_title_3"
         android:layout_margin="20dp"
-        app:layout_constraintTop_toBottomOf="@id/txt"
+        android:hint="@string/edtxt_password"
+        app:layout_constraintTop_toBottomOf="@id/txtUser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_password"
+        android:textSize="@dimen/txt_name_size_title_2"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@id/edtxtUser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/edtxtPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/txt_name_size_title_3"
+        android:layout_margin="20dp"
+        android:hint="@string/edtxt_password"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/btn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        style="@style/btn_login"
         android:layout_gravity="center"
-        android:text="Ingresar"
-        app:layout_constraintTop_toBottomOf="@id/edtxt"
+        android:text="@string/btn_login_text"
+        android:drawableLeft="@drawable/login"
+        app:layout_constraintTop_toBottomOf="@id/edtxtPass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
