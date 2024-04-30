@@ -33,6 +33,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    //Caracteristicas del ViewBinding
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
