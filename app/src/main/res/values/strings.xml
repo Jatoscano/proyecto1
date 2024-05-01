@@ -2,6 +2,7 @@
     <string name="app_name">Proyecto1</string>
     <string name="txt_login">Login</string>
     <string name="btn_login_text">Ingresar</string>
+    <string name="btn_exit_text">Salir</string>
     <string name="txt_user">User</string>
     <string name="txt_password">Password</string>
     <string name="edtxt_user">Ingrese el Usuario</string>
