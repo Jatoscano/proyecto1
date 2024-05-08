@@ -1,6 +1,7 @@
 package com.toscano.proyecto1
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -60,21 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
         }
          */
-
-        binding.btnLogin.setOnClickListener {
-            if (binding.edtxtUser.text.toString() == "admin" && binding.edtxtPass.text.toString() == "admin"){
-                Snackbar.make(binding.edtxtUser, "Bienvenido", Snackbar.LENGTH_SHORT).show()
-                //Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
-            }
-
-
-            else{
-                Snackbar.make(binding.edtxtUser, "Hay un error en el usuario", Snackbar.LENGTH_SHORT).show()
-                //Toast.makeText(this, "Hay un error en el usuario", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        Log.d("UCE", "Metodo onCreate")
+        initListeners()
     }
 
     //Se generar cuando se inicia o se necesita
@@ -87,5 +74,28 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.d("UCE", "Metodo onResume")
+    }
+
+    private fun initListeners(){
+        binding.btnLogin.setOnClickListener {
+
+            var loginUserCase = LoginUserCase()
+
+            var result = loginUserCase(binding.edtxtUser.text.toString(), binding.edtxtPass.text.toString())
+
+            //Manejo de Expersiones Lambda
+            result.onSuccess {
+
+                var intentToConstraintActivity = Intent(this,ConstraintActivity::class.java)
+                intentToConstraintActivity.putExtra("IdUser", it)
+                startActivity(intentToConstraintActivity)
+            }
+
+            result.onFailure {
+                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        Log.d("UCE", "Metodo onCreate")
     }
 }
