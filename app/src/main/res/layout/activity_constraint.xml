@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/kyoto"
-    tools:context=".ConstraintActivity">
+    tools:context=".ui.activities.ConstraintActivity">
 
     <LinearLayout
         android:layout_width="250dp"

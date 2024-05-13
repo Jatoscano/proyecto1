@@ -1,17 +1,12 @@
-package com.toscano.proyecto1
+package com.toscano.proyecto1.ui.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.snackbar.Snackbar
+import com.toscano.proyecto1.data.repository.ListUsers
+import com.toscano.proyecto1.userCase.LoginUserCase
 import com.toscano.proyecto1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -79,14 +74,27 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners(){
         binding.btnLogin.setOnClickListener {
 
-            var loginUserCase = LoginUserCase()
+            var loginUserCase = LoginUserCase(ListUsers())
 
             var result = loginUserCase(binding.edtxtUser.text.toString(), binding.edtxtPass.text.toString())
 
+            result.onSuccess {user ->
+
+                var intentToConstraintActivity = Intent(this, ConstraintActivity::class.java)
+                    .apply {
+                        putExtra("IdUser", user.id)
+                    }
+                startActivity(intentToConstraintActivity)
+            }
+
+            result.onFailure {
+                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+            /*
             //Manejo de Expersiones Lambda
             result.onSuccess {
 
-                var intentToConstraintActivity = Intent(this,ConstraintActivity::class.java)
+                var intentToConstraintActivity = Intent(this, ConstraintActivity::class.java)
                 intentToConstraintActivity.putExtra("IdUser", it)
                 startActivity(intentToConstraintActivity)
             }
@@ -94,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             result.onFailure {
                 Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
+             */
         }
 
         Log.d("UCE", "Metodo onCreate")

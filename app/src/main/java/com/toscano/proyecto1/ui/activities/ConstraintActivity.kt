@@ -1,12 +1,9 @@
-package com.toscano.proyecto1
+package com.toscano.proyecto1.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 import com.toscano.proyecto1.databinding.ActivityConstraintBinding
 
@@ -20,6 +17,18 @@ class ConstraintActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initListeners()
+
+        var idUser: Int? = null
+        intent.extras?.let { dato ->
+            idUser = dato.getInt("idUser")
+        }
+
+       if (idUser != null){
+           binding.txtConstLogin.text = idUser.toString()
+       }
+        else{
+            startActivity(Intent(this, MainActivity()::class.java))
+       }
     }
 
     //Se generar cuando se inicia o se necesita
@@ -50,7 +59,7 @@ class ConstraintActivity : AppCompatActivity() {
 
         binding.btnConstExit.setOnClickListener{
 
-            var a = Intent(this,MainActivity::class.java)
+            var a = Intent(this, MainActivity::class.java)
 
             startActivity(a)
         }

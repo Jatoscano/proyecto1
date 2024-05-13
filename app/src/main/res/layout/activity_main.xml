@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/playa"
-    tools:context=".MainActivity">
+    tools:context=".ui.activities.MainActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_margin="10dp"
