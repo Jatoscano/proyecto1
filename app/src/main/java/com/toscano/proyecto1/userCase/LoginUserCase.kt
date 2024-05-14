@@ -1,7 +1,7 @@
 package com.toscano.proyecto1.userCase
 
-import com.toscano.proyecto1.data.UserClass
-import com.toscano.proyecto1.data.repository.ListUsers
+import com.toscano.proyecto1.data.local.UserClass
+import com.toscano.proyecto1.data.local.repository.ListUsers
 
 class LoginUserCase (var listUsers: ListUsers){
     //Casos de Uso

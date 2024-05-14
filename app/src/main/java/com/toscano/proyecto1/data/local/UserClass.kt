@@ -1,4 +1,4 @@
-package com.toscano.proyecto1.data
+package com.toscano.proyecto1.data.local
 
 import android.util.Log
 
