@@ -1,4 +1,4 @@
-package com.toscano.proyecto1.userCase
+package com.toscano.proyecto1.logic.usercases
 
 import com.toscano.proyecto1.data.local.UserClass
 import com.toscano.proyecto1.data.local.repository.ListUsers

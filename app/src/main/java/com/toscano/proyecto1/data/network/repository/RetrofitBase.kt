@@ -7,10 +7,16 @@ object RetrofitBase {
 
     //Patron de Diseño Builder
     //No cambia y sea inmutable
-
-    fun returnBaseRetrofit(): Retrofit?{
+    fun returnBaseRetrofit(): Retrofit{
         return Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    fun returnBaseRetrofitNews(): Retrofit{
+        return Retrofit.Builder()
+            .baseUrl("https://api.thenewsapi.com/v1/news/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

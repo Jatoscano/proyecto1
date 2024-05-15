@@ -2,12 +2,19 @@ package com.toscano.proyecto1.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings.Global
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.toscano.proyecto1.data.local.repository.ListUsers
-import com.toscano.proyecto1.userCase.LoginUserCase
+import com.toscano.proyecto1.logic.usercases.LoginUserCase
 import com.toscano.proyecto1.databinding.ActivityMainBinding
+import com.toscano.proyecto1.logic.usercases.GetAllUsersUserCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -74,6 +81,11 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners(){
         binding.btnLogin.setOnClickListener {
 
+            //Modo de Correr las Corrutinas
+            lifecycleScope.launch (Dispatchers.IO){
+                GetAllUsersUserCase().invoke()
+            }
+            /*
             var loginUserCase = LoginUserCase(ListUsers())
 
             var result = loginUserCase(binding.edtxtUser.text.toString(), binding.edtxtPass.text.toString())
@@ -90,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             result.onFailure {
                 Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
-            /*
+
             //Manejo de Expersiones Lambda
             result.onSuccess {
 
