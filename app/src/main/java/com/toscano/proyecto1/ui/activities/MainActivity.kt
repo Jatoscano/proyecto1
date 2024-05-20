@@ -1,19 +1,13 @@
 package com.toscano.proyecto1.ui.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings.Global
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.toscano.proyecto1.data.local.repository.ListUsers
-import com.toscano.proyecto1.logic.usercases.LoginUserCase
 import com.toscano.proyecto1.databinding.ActivityMainBinding
-import com.toscano.proyecto1.logic.usercases.GetAllUsersUserCase
-import kotlinx.coroutines.CoroutineScope
+import com.toscano.proyecto1.logic.jsonplace.GetAllUsersUserCase
+import com.toscano.proyecto1.logic.news.GetAllTopNewsCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -82,8 +76,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
 
             //Modo de Correr las Corrutinas
+            /*
             lifecycleScope.launch (Dispatchers.IO){
                 GetAllUsersUserCase().invoke()
+            }
+             */
+
+            lifecycleScope.launch (Dispatchers.IO){
+                GetAllTopNewsCase().invoke()
             }
             /*
             var loginUserCase = LoginUserCase(ListUsers())

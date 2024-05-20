@@ -1,6 +1,5 @@
-package com.toscano.proyecto1.logic.usercases
+package com.toscano.proyecto1.logic.jsonplace
 
-import android.provider.ContactsContract.Data
 import android.util.Log
 import com.toscano.proyecto1.data.network.endpoints.UsersEndPoint
 import com.toscano.proyecto1.data.network.repository.RetrofitBase
