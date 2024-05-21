@@ -75,16 +75,7 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners(){
         binding.btnLogin.setOnClickListener {
 
-            //Modo de Correr las Corrutinas
-            /*
-            lifecycleScope.launch (Dispatchers.IO){
-                GetAllUsersUserCase().invoke()
-            }
-             */
 
-            lifecycleScope.launch (Dispatchers.IO){
-                GetAllTopNewsCase().invoke()
-            }
             /*
             var loginUserCase = LoginUserCase(ListUsers())
 

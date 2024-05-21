@@ -1,8 +1,8 @@
 package com.toscano.proyecto1.data.network.endpoints
 
 
-import com.toscano.proyecto1.data.network.entities.allnews.AllNewsAPI
-import com.toscano.proyecto1.data.network.entities.topnews.TopNewsAPI
+import com.toscano.proyecto1.data.network.entities.newsapi.allnews.AllNewsAPI
+import com.toscano.proyecto1.data.network.entities.newsapi.topnews.TopNewsAPI
 import retrofit2.Response
 import retrofit2.http.GET
 

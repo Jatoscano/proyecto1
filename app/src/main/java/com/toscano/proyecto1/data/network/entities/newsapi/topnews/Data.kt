@@ -1,4 +1,4 @@
-package com.toscano.proyecto1.data.network.entities.topnews
+package com.toscano.proyecto1.data.network.entities.newsapi.topnews
 
 data class Data(
     val categories: List<String?>,
