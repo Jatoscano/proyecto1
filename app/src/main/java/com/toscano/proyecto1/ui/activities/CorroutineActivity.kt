@@ -18,23 +18,28 @@ class CorroutineActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityCorroutineBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         initCorr()
 
     }
 
     private fun initCorr(){
-        //Modo de Correr las Corrutinas
-        /*
-        lifecycleScope.launch (Dispatchers.IO){
-            GetAllUsersUserCase().invoke()
-        }
-         */
 
-        lifecycleScope.launch (Dispatchers.IO){
-            GetAllTopNewsCase().invoke()
+        binding.btnCorrutines.setOnClickListener {
+
+            //Modo de Correr las Corrutinas
+            /*
+            lifecycleScope.launch (Dispatchers.IO){
+                GetAllUsersUserCase().invoke()
+            }
+             */
+
+            lifecycleScope.launch (Dispatchers.IO){
+                GetAllTopNewsCase().invoke()
+            }
         }
+
     }
 }

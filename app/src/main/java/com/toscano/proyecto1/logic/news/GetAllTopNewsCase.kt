@@ -9,12 +9,12 @@ import kotlinx.coroutines.withContext
 import retrofit2.create
 
 class GetAllTopNewsCase {
-    suspend operator fun invoke() : Result<List<Data?>?> {
+    suspend operator fun invoke(){
 
         //val token = "919689e8-bcd1-45b7-988f-8de37847ff6a"
         //val key = "FNNteH2pWmIGXXKowBUgmUj2bZ0MhU1rrkBeOuME"
 
-        /*
+
         withContext(Dispatchers.IO){
 
             var response = RetrofitBase.returnBaseRetrofitNews()
@@ -23,26 +23,13 @@ class GetAllTopNewsCase {
 
             return@withContext if (response.isSuccessful){
                 val data = response.body()?.data
-                //Log.d("RSP", data.toString())
+                Log.d("RSP", data.toString())
                 Result.success(data)
             }
             else{
-                //Log.d("RSP", "La ejecucion fallo")
+                Log.d("RSP", "La ejecucion fallo")
                 Result.failure(Exception("La ejecucion fallo"))
             }
         }
-         */
-
-            var response = RetrofitBase.returnBaseRetrofitNews()
-                .create(NewsEndPoint::class.java)
-                .getAllTopNews()
-
-            return if (response.isSuccessful){
-
-                Result.success(response.body()?.data)
-            }
-            else {
-                Result.failure(Exception("La ejecucion fallo"))
-            }
     }
 }

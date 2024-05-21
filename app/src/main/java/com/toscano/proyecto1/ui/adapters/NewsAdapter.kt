@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.toscano.proyecto1.R
-import com.toscano.proyecto1.data.network.entities.newsapi.topnews.Data
+import com.toscano.proyecto1.data.network.entities.newsapi.allnews.Data
 import com.toscano.proyecto1.databinding.ItemTopNewsBinding
 
 class NewsAdapter(private val listItem: List<Data>): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -29,7 +29,7 @@ class NewsAdapter(private val listItem: List<Data>): RecyclerView.Adapter<NewsAd
 
         val inflater = LayoutInflater.from(parent.context)
 
-        return NewsViewHolder(inflater.inflate(R.layout.item_top_news,parent,false))
+        return NewsViewHolder(inflater.inflate(R.layout.item_top_news, parent,false))
     }
 
     override fun getItemCount() = listItem.size

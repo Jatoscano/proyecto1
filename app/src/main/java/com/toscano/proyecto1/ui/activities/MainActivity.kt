@@ -1,12 +1,16 @@
 package com.toscano.proyecto1.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.toscano.proyecto1.data.local.repository.ListUsers
 import com.toscano.proyecto1.databinding.ActivityMainBinding
 import com.toscano.proyecto1.logic.jsonplace.GetAllUsersUserCase
 import com.toscano.proyecto1.logic.news.GetAllTopNewsCase
+import com.toscano.proyecto1.logic.usercases.LoginUserCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -76,7 +80,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
 
 
-            /*
             var loginUserCase = LoginUserCase(ListUsers())
 
             var result = loginUserCase(binding.edtxtUser.text.toString(), binding.edtxtPass.text.toString())
@@ -94,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
 
+            /*
             //Manejo de Expersiones Lambda
             result.onSuccess {
 
@@ -106,6 +110,18 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
              */
+
+        }
+        binding.btnCorr.setOnClickListener {
+            var intentCorroutineActivity = Intent(this, CorroutineActivity::class.java)
+
+            startActivity(intentCorroutineActivity)
+        }
+
+        binding.btnRecycler.setOnClickListener {
+            var intentRecyclerActivity = Intent(this, RecyclerActivity::class.java)
+
+            startActivity(intentRecyclerActivity)
         }
 
         Log.d("UCE", "Metodo onCreate")
