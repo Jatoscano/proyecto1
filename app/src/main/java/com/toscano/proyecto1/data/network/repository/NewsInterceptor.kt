@@ -26,7 +26,7 @@ class NewsInterceptor(private val apiKey: String): Interceptor {
         }
          */
 
-        val newsUrl  = chain.request().url().newBuilder().addQueryParameter("api_token", apiKey).build()
+        val newsUrl  = chain.request().url.newBuilder().addQueryParameter("api_token", apiKey).build()
 
         val newsRequest = chain.request().newBuilder().url(newsUrl).build()
 

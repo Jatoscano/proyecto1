@@ -3,7 +3,10 @@ package com.toscano.proyecto1.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import com.bumptech.glide.Glide
 import com.toscano.proyecto1.R
 import com.toscano.proyecto1.data.network.entities.newsapi.allnews.Data
 import com.toscano.proyecto1.databinding.ItemTopNewsBinding
@@ -19,6 +22,12 @@ class NewsAdapter(private val listItem: List<Data>): RecyclerView.Adapter<NewsAd
 
         fun render(data: Data){
 
+            //Implementacion con Glide
+            //Glide.with(binding.root).load(data.image_url).into(binding.imgNews)
+            //Implementacion con Coil
+            binding.imgNews.load(data.image_url){
+                placeholder(R.drawable.katana)
+            }
             binding.txtTitleNews.text = data.title.toString()
             binding.txtUrlNews.text = data.url.toString()
             binding.txtDescpNews.text = data.description.toString()

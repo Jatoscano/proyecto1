@@ -1,6 +1,7 @@
 package com.toscano.proyecto1.ui.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -22,10 +23,7 @@ class RecyclerActivity : AppCompatActivity() {
         binding = ActivityRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val items = initData()
-
-        initRecyclerView(items)
-
+        initData()
     }
 
     private fun initRecyclerView(items: List<Data>){
@@ -33,15 +31,22 @@ class RecyclerActivity : AppCompatActivity() {
         binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun initData(): List<Data>{
+    private fun initData(){
 
-        var items = ArrayList<Data>()
-        lifecycleScope.launch(Dispatchers.Main) {
-            val resultItem = withContext(Dispatchers.IO){ GetAllNewsCase().invoke() }
+        //Progress Indicators
+        binding.prgbarData.visibility = View.VISIBLE
 
-            resultItem.onSuccess { items.addAll(it!!.toList()) }
-            resultItem.onFailure { items.addAll(emptyList()) }
+        lifecycleScope.launch(Dispatchers.IO) {
+            val resultItem = GetAllNewsCase().invoke()
+
+            withContext(Dispatchers.Main){
+
+                binding.prgbarData.visibility = View.INVISIBLE
+
+                resultItem.onSuccess { initRecyclerView(it!!.toList()) }
+                resultItem.onFailure { initRecyclerView(emptyList()) }
+            }
+
         }
-        return items
     }
 }
