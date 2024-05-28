@@ -105,11 +105,11 @@ class RecyclerActivity : AppCompatActivity() {
     }
 
     //Funciones Lambda
-    private fun showTitle(news: Data){
+    private fun showTitle(news: NewsDataUI){
 
         /*
         val intent = Intent(this, MainActivity::class.java).apply {
-            putExtra("id", news.uuid)
+            putExtra("id", news.id)
         }
         startActivity(intent)
          */

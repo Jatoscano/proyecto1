@@ -30,7 +30,9 @@ class GetAllNewsCase {
 /*
 class GetAllNewsCase {
 
-    suspend operator fun invoke(): Result<List<Data>?>{
+    suspend operator fun invoke(): Result<List<NewsDataUI>>{
+
+        var item = ArrayList<NewsDataUI>()
 
         var response = RetrofitBase.returnBaseRetrofitNews()
             .create(NewsEndPoint::class.java)
@@ -40,10 +42,10 @@ class GetAllNewsCase {
 
             val data = response.body()?.data
             data!!.forEach{
-
+            item.add(NewsDataUI(it.uuid, it.image_url, it.title, it.description))
             }
             Log.d("RSP", data.toString())
-            Result.success(data)
+            Result.success(item.toList())
         }
 
         else {
