@@ -3,6 +3,7 @@ package com.toscano.proyecto1.ui.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +17,9 @@ import com.toscano.proyecto1.ui.entities.NewsDataUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.internal.notify
 
+/*
 class RecyclerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecyclerBinding
@@ -66,23 +69,38 @@ class RecyclerActivity : AppCompatActivity() {
     }
 }
 
+ */
 
-/*
+
+
 class RecyclerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecyclerBinding
-
+    private var items: MutableList<NewsDataUI> = mutableListOf()
+    private lateinit var newsAdapter: NewsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initVariable()
+        initListeners()
         initData()
     }
 
-    private fun initRecyclerView(items: List<NewsDataUI>){
-        binding.rvTopNews.adapter = NewsAdapter(items) {showTitle(it)}
-        binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    private fun initListeners(){
+
+        binding.rfRecycler.setOnRefreshListener {
+            initData()
+            binding.rfRecycler.isRefreshing = false
+        }
+
+    }
+
+    private fun initVariable(){
+        newsAdapter = NewsAdapter({descriptionItem(it)}, {deleteItem(it)}, {addItem()})
+                binding.rvTopNews.adapter = newsAdapter
+                binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun initData(){
@@ -97,23 +115,36 @@ class RecyclerActivity : AppCompatActivity() {
 
                 binding.prgbarData.visibility = View.INVISIBLE
 
-                resultItem.onSuccess { initRecyclerView(it!!.toList()) }
-                resultItem.onFailure { initRecyclerView(emptyList()) }
+                resultItem.onSuccess { items = it.toMutableList() ; newsAdapter.listItem = items }
+                resultItem.onFailure { Snackbar.make(binding.rfRecycler, it.message.toString(), Snackbar.LENGTH_LONG).show() }
             }
 
         }
     }
 
     //Funciones Lambda
-    private fun showTitle(news: NewsDataUI){
+    private fun descriptionItem(news: NewsDataUI){
 
-        /*
-        val intent = Intent(this, MainActivity::class.java).apply {
+
+        val intent = Intent(this, DetailActivity::class.java).apply {
             putExtra("id", news.id)
         }
         startActivity(intent)
-         */
-        Snackbar.make(binding.rvTopNews, news.title.toString(), Snackbar.LENGTH_LONG).show()
+
+        Snackbar.make(binding.rvTopNews, news.name.toString(), Snackbar.LENGTH_LONG).show()
+    }
+
+    private fun deleteItem(position: Int){
+
+        items.removeAt(position)
+        newsAdapter.listItem = items
+        newsAdapter.notifyItemRemoved(position)
+    }
+
+    private fun addItem(){
+
+        items.add(NewsDataUI("1","www.google.com", "Noticia Mentira", "123456", "132456"))
+        newsAdapter.listItem = items
+        newsAdapter.notifyItemInserted(items.size - 1)
     }
 }
- */

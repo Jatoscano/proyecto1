@@ -13,7 +13,7 @@ import com.toscano.proyecto1.data.network.entities.newsapi.allnews.Data
 import com.toscano.proyecto1.databinding.ItemTopNewsBinding
 import com.toscano.proyecto1.ui.entities.NewsDataUI
 
-
+/*
 class NewsAdapter(private val listItem: List<Data>, private val onClickAction: (Data) -> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     //Clase que le da forma al RecyclerView
@@ -60,19 +60,20 @@ class NewsAdapter(private val listItem: List<Data>, private val onClickAction: (
     }
 
 }
+*/
 
-
-/*
-class NewsAdapter(private val listItem: List<NewsDataUI>, private val onClickAction: (NewsDataUI) -> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val onClickAction: (NewsDataUI) -> Unit, private val onDeleteItem: (Int) -> Unit, private val onInsertItem: ()-> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     //Clase que le da forma al RecyclerView
     //Hacemos una inyeccion de dependencias por medio de constructores
+
+    var listItem: List<NewsDataUI> = emptyList()
     class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
         //Enviamos una vista
         private val binding = ItemTopNewsBinding.bind(view)
 
-        fun render(data: NewsDataUI, onClickAction: (NewsDataUI) -> Unit){
+        fun render(data: NewsDataUI, onClickAction: (NewsDataUI) -> Unit, onDeleteItem: (Int) -> Unit, onInsertItem: () -> Unit){
 
             //Implementacion con Glide
             //Glide.with(binding.root).load(data.image_url).into(binding.imgNews)
@@ -85,7 +86,11 @@ class NewsAdapter(private val listItem: List<NewsDataUI>, private val onClickAct
             binding.txtDescpNews.text = data.description.toString()
 
             binding.btnBorrar.setOnClickListener{
-                onClickAction(data)
+                onDeleteItem(adapterPosition)
+            }
+
+            binding.btnInsert.setOnClickListener {
+                onInsertItem()
             }
 
             //ItemView - Donde el layout se interactua
@@ -105,8 +110,8 @@ class NewsAdapter(private val listItem: List<NewsDataUI>, private val onClickAct
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
 
-        holder.render(listItem[position], onClickAction)
+        holder.render(listItem[position], onClickAction, onDeleteItem, onInsertItem)
     }
 
 }
- */
+

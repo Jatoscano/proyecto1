@@ -68,4 +68,6 @@ dependencies {
     implementation(libs.coil)
     //Glide
     implementation (libs.glide)
+    //Refresh-Layout
+    implementation (libs.androidx.swiperefreshlayout)
 }
