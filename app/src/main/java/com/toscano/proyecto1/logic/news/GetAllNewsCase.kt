@@ -4,7 +4,10 @@ import android.util.Log
 import com.toscano.proyecto1.data.network.endpoints.NewsEndPoint
 import com.toscano.proyecto1.data.network.entities.newsapi.allnews.Data
 import com.toscano.proyecto1.data.network.repository.RetrofitBase
+import com.toscano.proyecto1.ui.core.toNewsDataUI
+import com.toscano.proyecto1.ui.entities.NewsDataUI
 
+/*
 class GetAllNewsCase {
 
     suspend operator fun invoke(): Result<List<Data>?>{
@@ -27,12 +30,12 @@ class GetAllNewsCase {
     }
 }
 
-/*
+*/
 class GetAllNewsCase {
 
     suspend operator fun invoke(): Result<List<NewsDataUI>>{
 
-        var item = ArrayList<NewsDataUI>()
+        var item = mutableListOf<NewsDataUI>()
 
         var response = RetrofitBase.returnBaseRetrofitNews()
             .create(NewsEndPoint::class.java)
@@ -40,11 +43,10 @@ class GetAllNewsCase {
 
         return if (response.isSuccessful){
 
-            val data = response.body()?.data
-            data!!.forEach{
-            item.add(NewsDataUI(it.uuid, it.image_url, it.title, it.description))
+            response.body()?.data?.forEach{
+            item.add(it.toNewsDataUI())
             }
-            Log.d("RSP", data.toString())
+            Log.d("RSP", item.toString())
             Result.success(item.toList())
         }
 
@@ -54,5 +56,3 @@ class GetAllNewsCase {
         }
     }
 }
-
- */

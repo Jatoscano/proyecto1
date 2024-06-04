@@ -45,4 +45,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Eliminar News"/>
+
+    <Button
+        android:id="@+id/btn_insertar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insertar News"/>
 </LinearLayout>

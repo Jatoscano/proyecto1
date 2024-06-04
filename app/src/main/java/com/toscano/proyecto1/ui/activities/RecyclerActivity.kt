@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/*
 class RecyclerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecyclerBinding
@@ -65,23 +66,36 @@ class RecyclerActivity : AppCompatActivity() {
         Snackbar.make(binding.rvTopNews, news.title.toString(), Snackbar.LENGTH_LONG).show()
     }
 }
+ */
 
 
-/*
+
 class RecyclerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecyclerBinding
+    private var items: MutableList<NewsDataUI> = mutableListOf()
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initVariables()
+        initListeners()
         initData()
     }
 
-    private fun initRecyclerView(items: List<NewsDataUI>){
-        binding.rvTopNews.adapter = NewsAdapter(items) {showTitle(it)}
+    private fun initListeners(){
+        binding.rfRecycler.setOnRefreshListener {
+            initData()
+            binding.rfRecycler.isRefreshing = false
+        }
+    }
+
+    private fun initVariables(){
+        newsAdapter = NewsAdapter({descriptionItem(it)}, {deleteItem(it)}, {addItem()})
+        binding.rvTopNews.adapter = newsAdapter
         binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
@@ -97,23 +111,42 @@ class RecyclerActivity : AppCompatActivity() {
 
                 binding.prgbarData.visibility = View.INVISIBLE
 
-                resultItem.onSuccess { initRecyclerView(it!!.toList()) }
-                resultItem.onFailure { initRecyclerView(emptyList()) }
+                resultItem.onSuccess {
+                    items = it.toMutableList()
+                    newsAdapter.listItem = items
+                }
+
+                resultItem.onFailure { Snackbar.make(binding.rfRecycler, it.message.toString(), Snackbar.LENGTH_LONG).show() }
             }
 
         }
     }
 
-    //Funciones Lambda
-    private fun showTitle(news: NewsDataUI){
+    //Borrar noticia
+    private fun deleteItem(position: Int){
 
-        /*
-        val intent = Intent(this, MainActivity::class.java).apply {
+        items.removeAt(position)
+        newsAdapter.listItem = items
+        newsAdapter.notifyItemRemoved(position)
+
+    }
+
+    //Agregar noticia
+    private fun addItem(){
+
+        items.add(NewsDataUI("1", "www.google.com","Noticia Fake", "123456", "123456"))
+        newsAdapter.listItem = items
+        newsAdapter.notifyItemInserted(items.size - 1)
+
+    }
+
+
+    //Funciones Lambda
+    private fun descriptionItem(news: NewsDataUI){
+
+        val intent = Intent(this, DetailActivity::class.java).apply {
             putExtra("id", news.id)
         }
         startActivity(intent)
-         */
-        Snackbar.make(binding.rvTopNews, news.title.toString(), Snackbar.LENGTH_LONG).show()
     }
 }
- */
