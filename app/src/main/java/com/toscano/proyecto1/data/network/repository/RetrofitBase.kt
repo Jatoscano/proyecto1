@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBase {
 
-    const val NEWS_API_KEY = "FNNteH2pWmIGXXKowBUgmUj2bZ0MhU1rrkBeOuME"
+    const val NEWS_API_KEY = "szRIOC53idaWzvKqPcZkU3hKizQXxepEetJXCxRE"
 
     //Patron de Diseño Builder
     //No cambia y sea inmutable

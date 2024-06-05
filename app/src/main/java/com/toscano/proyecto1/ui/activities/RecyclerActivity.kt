@@ -114,6 +114,7 @@ class RecyclerActivity : AppCompatActivity() {
                 resultItem.onSuccess {
                     items = it.toMutableList()
                     newsAdapter.listItem = items
+                    newsAdapter.notifyDataSetChanged()
                 }
 
                 resultItem.onFailure { Snackbar.make(binding.rfRecycler, it.message.toString(), Snackbar.LENGTH_LONG).show() }
@@ -128,6 +129,7 @@ class RecyclerActivity : AppCompatActivity() {
         items.removeAt(position)
         newsAdapter.listItem = items
         newsAdapter.notifyItemRemoved(position)
+        newsAdapter.notifyDataSetChanged()
 
     }
 
@@ -137,6 +139,7 @@ class RecyclerActivity : AppCompatActivity() {
         items.add(NewsDataUI("1", "www.google.com","Noticia Fake", "123456", "123456"))
         newsAdapter.listItem = items
         newsAdapter.notifyItemInserted(items.size - 1)
+        newsAdapter.notifyDataSetChanged()
 
     }
 

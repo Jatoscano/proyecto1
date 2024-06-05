@@ -43,9 +43,7 @@ class GetAllNewsCase {
 
         return if (response.isSuccessful){
 
-            response.body()?.data?.forEach{
-            item.add(it.toNewsDataUI())
-            }
+            response.body()?.data?.forEach{ item.add(it.toNewsDataUI()) }
             Log.d("RSP", item.toString())
             Result.success(item.toList())
         }
