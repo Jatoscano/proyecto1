@@ -57,10 +57,14 @@ dependencies {
     implementation (libs.retrofit)
     //Gson
     implementation(libs.converter.gson)
+    //Refresh-Layout
+    implementation (libs.androidx.swiperefreshlayout)
+    //Coordinator Layout
+    implementation(libs.androidx.coordinatorlayout)
      */
 
     //Bundles
-    //Retrofit
+    //Retrofit - Gson
     implementation(libs.bundles.retrofit)
     //Corrutinas
     implementation (libs.kotlinx.coroutines.android)
@@ -68,6 +72,7 @@ dependencies {
     implementation(libs.coil)
     //Glide
     implementation (libs.glide)
-    //Refresh-Layout
-    implementation (libs.androidx.swiperefreshlayout)
+    //Layouts -> Refresh - Coordinator
+    implementation(libs.bundles.layouts)
+
 }

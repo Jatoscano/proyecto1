@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/favoriteItem"
+          android:title="Favoritos"
+          android:icon="@drawable/favorite"/>
+
+    <item android:id="@+id/presentItem"
+          android:title="Recientes"
+          android:icon="@drawable/schedule"/>
+
+    <item android:id="@+id/recommendItem"
+          android:title="Recomendadas"
+          android:icon="@drawable/reviews"/>
+
+</menu>
