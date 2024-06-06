@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.google.android.material.snackbar.Snackbar
+import com.toscano.proyecto1.R
 import com.toscano.proyecto1.data.network.entities.newsapi.allnews.Data
 import com.toscano.proyecto1.databinding.ActivityRecyclerBinding
 import com.toscano.proyecto1.logic.news.GetAllNewsCase
@@ -91,10 +93,14 @@ class RecyclerActivity : AppCompatActivity() {
             initData()
             binding.rfRecycler.isRefreshing = false
         }
+
+        binding.btnInsertar.setOnClickListener {
+            addItem()
+        }
     }
 
     private fun initVariables(){
-        newsAdapter = NewsAdapter({descriptionItem(it)}, {deleteItem(it)}, {addItem()})
+        newsAdapter = NewsAdapter({descriptionItem(it)}, {deleteItem(it)})
         binding.rvTopNews.adapter = newsAdapter
         binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
@@ -149,6 +155,10 @@ class RecyclerActivity : AppCompatActivity() {
 
         val intent = Intent(this, DetailActivity::class.java).apply {
             putExtra("id", news.id)
+            putExtra("image", news.image)
+            putExtra("title", news.name)
+            putExtra("url", news.url)
+            putExtra("description", news.description)
         }
         startActivity(intent)
     }

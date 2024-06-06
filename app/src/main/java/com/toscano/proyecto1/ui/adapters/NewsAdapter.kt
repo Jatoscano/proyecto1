@@ -64,7 +64,7 @@ class NewsAdapter(private val listItem: List<Data>, private val onClickAction: (
 
 
 
-class NewsAdapter(private val onClickAction: (NewsDataUI) -> Unit, private val onDeleteItem: (Int) -> Unit, private val onAddItem: () -> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val onClickAction: (NewsDataUI) -> Unit, private val onDeleteItem: (Int) -> Unit): RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     //Clase que le da forma al RecyclerView
     //Hacemos una inyeccion de dependencias por medio de constructores
@@ -74,7 +74,7 @@ class NewsAdapter(private val onClickAction: (NewsDataUI) -> Unit, private val o
         //Enviamos una vista
         private val binding = ItemTopNewsBinding.bind(view)
 
-        fun render(data: NewsDataUI, onClickAction: (NewsDataUI) -> Unit, onDeleteItem: (Int) -> Unit, onAddItem: () -> Unit){
+        fun render(data: NewsDataUI, onClickAction: (NewsDataUI) -> Unit, onDeleteItem: (Int) -> Unit){
 
             //Implementacion con Glide
             //Glide.with(binding.root).load(data.image_url).into(binding.imgNews)
@@ -88,10 +88,6 @@ class NewsAdapter(private val onClickAction: (NewsDataUI) -> Unit, private val o
 
             binding.btnBorrar.setOnClickListener{
                 onDeleteItem(adapterPosition)
-            }
-
-            binding.btnInsertar.setOnClickListener {
-                onAddItem()
             }
 
             //ItemView - Donde el layout se interactua
@@ -111,7 +107,7 @@ class NewsAdapter(private val onClickAction: (NewsDataUI) -> Unit, private val o
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
 
-        holder.render(listItem[position], onClickAction, onDeleteItem, onAddItem)
+        holder.render(listItem[position], onClickAction, onDeleteItem)
     }
 
 }
