@@ -2,15 +2,12 @@ package com.toscano.proyecto1.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import coil.load
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.toscano.proyecto1.R
-import com.toscano.proyecto1.data.network.entities.newsapi.allnews.Data
 import com.toscano.proyecto1.databinding.ActivityRecyclerBinding
 import com.toscano.proyecto1.logic.news.GetAllNewsCase
 import com.toscano.proyecto1.ui.adapters.NewsAdapter
@@ -102,7 +99,10 @@ class RecyclerActivity : AppCompatActivity() {
     private fun initVariables(){
         newsAdapter = NewsAdapter({descriptionItem(it)}, {deleteItem(it)})
         binding.rvTopNews.adapter = newsAdapter
-        binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        //Vista de Contenido en forma de cuadros
+        binding.rvTopNews.layoutManager = GridLayoutManager(this, 2)
+        //Vista de Contenido en forma de Cascada
+        //binding.rvTopNews.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     private fun initData(){
@@ -153,6 +153,7 @@ class RecyclerActivity : AppCompatActivity() {
     //Funciones Lambda
     private fun descriptionItem(news: NewsDataUI){
 
+        Log.d("UUID", news.id)
         val intent = Intent(this, DetailActivity::class.java).apply {
             putExtra("id", news.id)
             putExtra("image", news.image)
