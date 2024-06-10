@@ -13,7 +13,7 @@ interface NewsEndPoint {
     suspend fun getAllTopNews(@Query("api_token") apiToken: String): Response<TopNewsAPI?>
      */
 
-    @GET("top")
+    @GET("top/{user_id}")
     suspend fun getAllTopNews(): Response<TopNewsAPI?>
 
     @GET("all")
