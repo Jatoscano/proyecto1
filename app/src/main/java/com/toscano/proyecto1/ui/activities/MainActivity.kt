@@ -125,6 +125,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentDataBaseActivity)
         }
 
+        binding.btnNavigation.setOnClickListener {
+            var intentBottomNavigationActivity = Intent(this, BottomNavigationActivity::class.java)
+
+            startActivity(intentBottomNavigationActivity)
+        }
+
         Log.d("UCE", "Metodo onCreate")
     }
 

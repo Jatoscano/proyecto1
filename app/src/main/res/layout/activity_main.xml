@@ -126,6 +126,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <Button
+            android:id="@+id/btn_navigation"
+            style="@style/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ingresar al Bottom Navigation"
+            android:drawableLeft="@drawable/login"
+            app:layout_constraintTop_toBottomOf="@id/btn_data_base"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
