@@ -5,14 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.toscano.proyecto1.data.local.repository.ListUsers
 import com.toscano.proyecto1.databinding.ActivityMainBinding
-import com.toscano.proyecto1.logic.jsonplace.GetAllUsersUserCase
-import com.toscano.proyecto1.logic.news.GetAllTopNewsCase
 import com.toscano.proyecto1.logic.usercases.LoginUserCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
