@@ -88,6 +88,11 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
     //implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
+    //Splash Screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    //Data Store
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
 
 
 }
