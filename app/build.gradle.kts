@@ -84,6 +84,9 @@ dependencies {
     implementation (libs.glide)
     //Layouts -> Refresh - Coordinator
     implementation(libs.bundles.layouts)
+    //Biometric
+    implementation("androidx.biometric:biometric:1.1.0")
+    //implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
 
 
