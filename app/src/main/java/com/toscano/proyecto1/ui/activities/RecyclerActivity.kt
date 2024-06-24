@@ -2,10 +2,10 @@ package com.toscano.proyecto1.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.toscano.proyecto1.R
 import com.toscano.proyecto1.databinding.ActivityRecyclerBinding
-import com.toscano.proyecto1.ui.fragments.FavoritesFragment
-import com.toscano.proyecto1.ui.fragments.ListNewsFragment
 
 /*
 class RecyclerActivity : AppCompatActivity() {
@@ -158,6 +158,7 @@ class RecyclerActivity : AppCompatActivity() {
 class RecyclerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecyclerBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -165,6 +166,8 @@ class RecyclerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initListeners()
+        initVariables()
+
 
     }
 
@@ -174,20 +177,11 @@ class RecyclerActivity : AppCompatActivity() {
 
             when(item.itemId) {
                 R.id.favoriteItem -> {
-                    val favorites = supportFragmentManager.beginTransaction()
-                    favorites.replace(binding.lytFragment.id, FavoritesFragment())
-                    favorites.addToBackStack(null)
-                    favorites.commit()
-                    //Snackbar.make(binding.rfRecycler, "Listado de Favoritas", Snackbar.LENGTH_LONG).show()
+                    navController.navigate(R.id.action_favoritesFragment_to_modifyFragment)
                     true
                 }
                 R.id.presentItem -> {
-                    //Llamado de fragments
-                    val present = supportFragmentManager.beginTransaction()
-                    present.replace(binding.lytFragment.id, ListNewsFragment())
-                    present.addToBackStack(null)
-                    present.commit()
-                    //Snackbar.make(binding.rfRecycler, "Listado de Recientes", Snackbar.LENGTH_LONG).show()
+                    navController.navigate(R.id.action_favoritesFragment_to_listNewsFragment)
                     true
                 }
                 R.id.recommendItem -> {
@@ -203,6 +197,11 @@ class RecyclerActivity : AppCompatActivity() {
         }
     }
 
+    private fun initVariables(){
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.containerFragments) as NavHostFragment
+        navController = navHostFragment.navController
+
+    }
     override fun onDestroy() {
         super.onDestroy()
 

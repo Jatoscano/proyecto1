@@ -63,6 +63,7 @@ class BiometricActivity : AppCompatActivity() {
             initDataStoreSave(DataStoreEntity("Juan", true))
             Log.d("TAG", initDataStoreGet().toString())
             initBiometric()
+            startActivity(Intent(this@BiometricActivity, RecyclerActivity::class.java))
         }
     }
 
